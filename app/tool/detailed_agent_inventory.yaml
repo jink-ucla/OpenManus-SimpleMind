@@ -1,0 +1,765 @@
+bounding_box:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - mask
+        optional: false
+        type: mask_compressed_numpy
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      axis:
+        default: z
+        optional: true
+      offset_unit:
+        default: NA
+        optional: true
+      slice_wise_bounding_box:
+        default: false
+        optional: true
+      x_lower_offset:
+        default: 0
+        optional: true
+      x_upper_offset:
+        default: 0
+        optional: true
+      y_lower_offset:
+        default: 0
+        optional: true
+      y_upper_offset:
+        default: 0
+        optional: true
+      z_lower_offset:
+        default: 0
+        optional: true
+      z_upper_offset:
+        default: 0
+        optional: true
+  path: simplemind/agent/mask_processing/bounding_box.py
+candidate_selector:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - decision_tree_data
+        optional: false
+        type: dictionary
+      input_2:
+        alternate_names:
+        - candidate_data
+        optional: true
+        type: mask_compressed_numpy
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      accept_blank_image:
+        default: false
+        optional: true
+      confidence_thres:
+        optional: false
+      largest_only:
+        default: false
+        optional: true
+  path: simplemind/agent/reasoning/candidate_selector.py
+candidate_selector_new:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - candidate_data
+        optional: false
+        type: mask_compressed_numpy
+      input_2:
+        alternate_names:
+        - confidence_data
+        optional: false
+        type: dictionary
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      confidence_thres:
+        default: '0.5'
+        optional: true
+      highest_confidence_only:
+        default: false
+        optional: true
+      largest_only:
+        default: false
+        optional: true
+  path: simplemind/agent/reasoning/candidate_selector_new.py
+clahe:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      channel:
+        optional: true
+      clip_limit:
+        optional: false
+      nbins:
+        optional: false
+      numpy_only:
+        optional: false
+  path: simplemind/agent/image_processing/clahe.py
+connected_components:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - mask
+        optional: false
+        type: mask_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      connectivity:
+        optional: false
+      voxel_count_threshold:
+        optional: true
+  path: simplemind/agent/mask_processing/connected_components.py
+crop:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+      input_2:
+        alternate_names:
+        - bounding_box
+        optional: false
+        type: mask_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def: {}
+  path: simplemind/agent/image_processing/crop.py
+decision_tree:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - candidate_data
+        optional: false
+        type: mask_compressed_numpy
+      input_2:
+        alternate_names:
+        - reference_data
+        optional: true
+        type: mask_compressed_numpy
+    agent_output_def:
+      DT_dict:
+        type: dictionary
+    agent_parameter_def:
+      DT_dict_path:
+        generate_params: <function Decisiontree.generate_dt_params at 0x708caf337e20>
+        optional: false
+      learn:
+        default: false
+        optional: true
+      learn_output_name:
+        default: dt_train
+        optional: true
+      ref_iou_threshold:
+        default: 0.7
+        optional: true
+      visualize_png:
+        default: false
+        optional: true
+  path: simplemind/agent/reasoning/decision_tree.py
+edges:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - mask_1
+        optional: false
+        type: mask_compressed_numpy
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def: {}
+  path: simplemind/agent/mask_processing/edges.py
+eval_mask:
+  info:
+    agent_input_def:
+      input_1:
+        optional: false
+        type: image_compressed_numpy
+      input_2:
+        optional: false
+        type: mask_compressed_numpy
+      input_3:
+        optional: false
+        type: string
+    agent_output_def:
+      metrics:
+        type: dictionary
+    agent_parameter_def: {}
+  path: simplemind/agent/eval/eval_mask.py
+expand_channels:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      number_of_channels:
+        optional: false
+      numpy_only:
+        default: false
+        optional: true
+  path: simplemind/agent/image_processing/expand_channels.py
+export_nifti:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - input
+        - image
+        type: image_compressed_numpy
+      input_2:
+        alternate_names:
+        - mask
+        optional: true
+        type: mask_compressed_numpy
+    agent_output_def: {}
+    agent_parameter_def:
+      csv_filename:
+        optional: false
+  path: simplemind/agent/image_processing/export_nifti.py
+get_image_mask:
+  info:
+    agent_input_def:
+      input:
+        optional: false
+        type: mask_compressed_numpy
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      x_lower_prop:
+        default: 0
+        optional: true
+      x_upper_prop:
+        default: 0
+        optional: true
+      y_lower_prop:
+        default: 0
+        optional: true
+      y_upper_prop:
+        default: 0
+        optional: true
+      z_lower_prop:
+        default: 0
+        optional: true
+      z_upper_prop:
+        default: 0
+        optional: true
+  path: simplemind/agent/mask_processing/get_image_mask.py
+histeq:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      channel:
+        optional: false
+      nbins:
+        optional: false
+      numpy_only:
+        optional: false
+  path: simplemind/agent/image_processing/histeq.py
+hole_filling:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - mask
+        optional: false
+        type: mask_compressed_numpy
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      is_3d:
+        optional: false
+      max_hole_size:
+        optional: false
+  path: simplemind/agent/mask_processing/hole_filling.py
+mask_logic:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - mask_1
+        optional: false
+        type: mask_compressed_numpy
+      input_2:
+        alternate_names:
+        - mask_2
+        default: false
+        optional: true
+        type: mask_compressed_numpy
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      logical_operator:
+        optional: false
+      none_if_empty:
+        default: false
+        optional: true
+  path: simplemind/agent/mask_processing/mask_logic.py
+measure_distance:
+  info:
+    agent_input_def:
+      input_1:
+        optional: false
+        type: mask_compressed_numpy
+      input_2:
+        optional: false
+        type: mask_compressed_numpy
+      input_3:
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      distance:
+        type: metric
+    agent_parameter_def: {}
+  path: simplemind/agent/eval/dev/measure_distance.py
+min_max:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      channel:
+        optional: true
+      numpy_only:
+        optional: false
+  path: simplemind/agent/image_processing/min_max.py
+morphology:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - mask
+        optional: false
+        type: mask_compressed_numpy
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      kernel:
+        generate_params: <function Morphologicalprocessingagent.generate_kernel_params
+          at 0x708b79595630>
+        optional: false
+      morphological_task:
+        generate_params: <function Morphologicalprocessingagent.generate_task_param
+          at 0x708b795955a0>
+        optional: false
+  path: simplemind/agent/mask_processing/morphology.py
+mr_prostate_segmentation_inference:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      gpu_num:
+        optional: true
+      model_backbone:
+        optional: false
+      model_num_classes:
+        optional: false
+      model_output_class:
+        default: 0
+        optional: true
+      model_weight_dir:
+        optional: true
+      output_class_select:
+        default: false
+        optional: true
+  path: simplemind/agent/nn/torch/task_specific/mr_prostate_segmentation_inference.py
+mr_prostate_segmentation_preprocessor:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def: {}
+  path: simplemind/agent/image_processing/task_specific/mr_prostate_segmentation_preprocessor.py
+nn_preprocessing:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      numpy_only:
+        default: false
+        optional: true
+      settings_yaml:
+        optional: false
+      training_label:
+        default: null
+        optional: true
+  path: simplemind/agent/image_processing/nn_preprocessing.py
+old_morphology:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - mask
+        optional: false
+        type: mask_compressed_numpy
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      kernel_shape:
+        optional: false
+      kernel_size:
+        optional: false
+      morphological_task:
+        optional: false
+  path: simplemind/agent/mask_processing/old_morphology.py
+plot_cxr:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+      input_2:
+        alternate_names:
+        - et_tip
+        optional: false
+        type: mask_compressed_numpy
+      input_3:
+        alternate_names:
+        - carina
+        optional: false
+        type: mask_compressed_numpy
+      input_4:
+        alternate_names:
+        - et_tube
+        optional: false
+        type: mask_compressed_numpy
+      input_5:
+        alternate_names:
+        - ett_alert
+        optional: false
+        type: mask_compressed_numpy
+      input_6:
+        alternate_names:
+        - et_zone
+        optional: false
+        type: mask_compressed_numpy
+      input_7:
+        alternate_names:
+        - distance
+        optional: false
+        type: metric
+    agent_output_def: {}
+    agent_parameter_def:
+      mask_alpha:
+        default: 0.8
+        optional: true
+      output_filename:
+        default: cxr_final_result
+        optional: true
+  path: simplemind/agent/image_processing/dev/plot_cxr.py
+pyradiomics_agent:
+  info:
+    agent_input_def:
+      input1:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+      input2:
+        alternate_names:
+        - roi
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      feature_dict:
+        type: dictionary
+    agent_parameter_def:
+      crop:
+        default: true
+        optional: true
+      roi_index:
+        default: 1
+        optional: true
+      settings_file:
+        optional: false
+  path: simplemind/agent/feature_extraction/pyradiomics_agent.py
+reasoning:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - candidate_data
+        optional: false
+        type: mask_compressed_numpy
+      input_2:
+        alternate_names:
+        - reference_data
+        default: null
+        optional: true
+        type: mask_compressed_numpy
+    agent_output_def:
+      DT_dict:
+        type: dictionary
+    agent_parameter_def:
+      confidence_class:
+        default: FuzzyConfidence
+        optional: true
+      reasoning_settings_yaml:
+        optional: false
+  path: simplemind/agent/reasoning/reasoning.py
+resize:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      anti_aliasing:
+        optional: false
+      numpy_only:
+        default: false
+        optional: true
+      order:
+        optional: false
+      preserve_range:
+        optional: false
+      target_shape:
+        optional: false
+  path: simplemind/agent/image_processing/resize.py
+save_image:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - input
+        - image
+        optional: true
+        type: image_compressed_numpy
+      input_2:
+        alternate_names:
+        - mask
+        optional: true
+        type: mask_compressed_numpy
+    agent_output_def: {}
+    agent_parameter_def:
+      mask_alpha:
+        default: 0.8
+        optional: true
+      mask_color:
+        optional: true
+      not_none_input:
+        default: false
+        optional: true
+      output_filename:
+        optional: false
+      title:
+        optional: true
+  path: simplemind/agent/image_processing/save_image.py
+set_metadata:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      new_metadata:
+        optional: false
+  path: simplemind/agent/image_processing/set_metadata.py
+spatial_offset:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - mask
+        optional: false
+        type: mask_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      x_offset_1:
+        optional: true
+      x_offset_2:
+        optional: true
+      y_offset_1:
+        optional: true
+      y_offset_2:
+        optional: true
+      z_offset_1:
+        optional: true
+      z_offset_2:
+        optional: true
+  path: simplemind/agent/mask_processing/spatial_offset.py
+tf2_segmentation:
+  info:
+    agent_input_def:
+      input_1:
+        alternate_names:
+        - original_image
+        optional: false
+        type: image_compressed_numpy
+      input_2:
+        alternate_names:
+        - preprocessed_image
+        optional: false
+        type: image_compressed_numpy
+      input_3:
+        alternate_names:
+        - bounding_box
+        default: null
+        optional: true
+        type: mask_compressed_numpy
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      learn:
+        default: false
+        optional: true
+      output_map:
+        default: false
+        optional: true
+      prediction_threshold:
+        default: 0.5
+        optional: true
+      settings_yaml:
+        optional: false
+      use_checkpoint:
+        default: false
+        optional: true
+      weights_path:
+        default: null
+        optional: true
+      weights_url:
+        default: null
+        optional: true
+      working_dir:
+        default: null
+        optional: true
+  path: simplemind/agent/nn/tf2/tf2_segmentation.py
+threshold_hu:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      mask:
+        type: mask_compressed_numpy
+    agent_parameter_def:
+      lower_hu_limit:
+        optional: false
+      upper_hu_limit:
+        optional: false
+  path: simplemind/agent/image_processing/threshold_hu.py
+window_level:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      channel:
+        optional: false
+      level:
+        optional: false
+      numpy_only:
+        default: false
+        optional: true
+      window:
+        optional: false
+  path: simplemind/agent/image_processing/window_level.py
+z_score:
+  info:
+    agent_input_def:
+      input:
+        alternate_names:
+        - image
+        optional: false
+        type: image_compressed_numpy
+    agent_output_def:
+      image:
+        type: image_compressed_numpy
+    agent_parameter_def:
+      channel:
+        optional: false
+      numpy_only:
+        optional: false
+  path: simplemind/agent/image_processing/z_score.py
