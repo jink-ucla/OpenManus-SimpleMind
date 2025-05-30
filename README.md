@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./figs/LOGO.png" width="200"/>
+  <img src="./figs/logo.jpg" width="200"/>
   </p>
 
 [![GitHub stars](https://img.shields.io/github/stars/[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]?style=social)](https://github.com/[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]/stargazers)
@@ -38,7 +38,7 @@ The overall process involves:
     * The agent initiates SimpleMind's SM-Learn module to train models using the generated YAML.
     * It then initiates SimpleMind's SM-Think module to run inference on new data.
 
-![Conceptual Workflow](./figs/fig1.png)
+![Conceptual Workflow](./figs/fig1.jpg)
 
 ### Proof-of-Concept: Chest X-Ray Segmentation
 
@@ -59,7 +59,7 @@ This work highlights the potential for agentic systems to significantly streamli
 
 Our system integrates the OpenManus agentic AI framework with the SimpleMind cognitive AI environment. The OpenManus agent, powered by an LLM (e.g., served via vLLM), handles task understanding, planning, and generation of the SimpleMind Knowledge Graph (YAML). SimpleMind then executes the defined computer vision pipeline.
 
-![System Architecture](./figs/fig2.png)
+![System Architecture](./figs/fig2.jpg)
 
 ## Installation
 
