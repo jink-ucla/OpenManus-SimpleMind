@@ -132,17 +132,6 @@ We welcome friendly suggestions and helpful contributions to *this specific proj
 For discussions or questions related to our work on autonomous CV with OpenManus and SimpleMind, you can contact:
 * [Primary Contact Name/Email or GitHub Handle] **Note**: If you plan to contribute code, please consider using a pre-commit tool to check your changes if this project adopts it. (e.g., `pre-commit run --all-files`).
 
-## Community
-
-For discussions related to the core OpenManus framework, please refer to the community channels of the [original OpenManus project](https://github.com/mannaandpoem/OpenManus).
-
-<!-- ## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]&type=Date)](https://star-history.com/#[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]&Date) -->
-<!-- 
-## Sponsors
-
-Special thanks to any institutions or individuals supporting this work. -->
 
 ## Acknowledgements
 
@@ -150,10 +139,6 @@ This work builds upon several pioneering projects and tools. We gratefully ackno
 
 * The **OpenManus Team** ([@mannaandpoem](https://github.com/mannaandpoem) and other contributors) for creating the [OpenManus framework](https://github.com/mannaandpoem/OpenManus), which provided the foundational agentic capabilities for our project.
 * The **SimpleMind Team** for developing the [SimpleMind Cognitive AI environment](https://gitlab.com/sm-ai-team/simplemind).
-<!-- * Inspirations from [anthropic-computer-use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo) and [browser-use](https://github.com/browser-use/browser-use).
-* Related and inspiring works such as [AAAJ](https://github.com/metauto-ai/agent-as-a-judge), [MetaGPT](https://github.com/geekan/MetaGPT), [OpenHands](https://github.com/All-Hands-AI/OpenHands), and [SWE-agent](https://github.com/SWE-agent/SWE-agent). -->
-
-
 
 ## Our Publication
 
@@ -175,15 +160,3 @@ Our work, "Autonomous Computer Vision Development with Agentic AI," is detailed 
     ```
     *(Please update the BibTeX with full author names and the correct arXiv details when available.)*
  -->
-
-<!-- ## Cite Our Work
-
-If you use our specific contributions to autonomous computer vision development, our SimpleMind integration, or the findings from our paper, please cite:
-```bibtex
-@article{[YOUR_ARXIV_ID_OR_CUSTOM_KEY_2025],
-  author    = {Jin, [First Name] and Wasil, [First Name] and Sangyun, [First Name] and Shawn, [First Name] and John, [First Name] and Matt, [First Name]},
-  title     = {Autonomous Computer Vision Development with Agentic AI},
-  journal   = {arXiv preprint arXiv:[YOUR_ARXIV_NUMBER_ONCE_AVAILABLE]},
-  year      = {2025}
-  % Add other details like month, eprint, primaryClass when available
-} -->
