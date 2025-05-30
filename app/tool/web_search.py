@@ -300,7 +300,7 @@ class WebSearch(BaseTool):
             search_items = await self._perform_search_with_engine(
                 engine, query, num_results, search_params
             )
-
+            print(f'search_items {search_items}')
             if not search_items:
                 continue
 

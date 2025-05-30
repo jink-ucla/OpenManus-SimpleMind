@@ -2,6 +2,7 @@ import asyncio
 import base64
 import json
 from typing import Generic, Optional, TypeVar
+import logging # Using standard logging
 
 from browser_use import Browser as BrowserUseBrowser
 from browser_use import BrowserConfig
@@ -15,6 +16,7 @@ from app.llm import LLM
 from app.tool.base import BaseTool, ToolResult
 from app.tool.web_search import WebSearch
 
+logger = logging.getLogger(__name__)
 
 _BROWSER_DESCRIPTION = """\
 A powerful browser automation tool that allows interaction with web pages through various actions.
@@ -370,6 +372,9 @@ class BrowserUseTool(BaseTool, Generic[Context]):
                     return ToolResult(
                         output=f"Selected option '{text}' from dropdown at index {index}"
                     )
+# Inside app/tool/browser_use_tool.py -> class BrowserUseTool -> execute method
+
+                # ... (other actions like go_to_url, click_element, etc.) ...
 
                 # Content extraction actions
                 elif action == "extract_content":
@@ -379,69 +384,57 @@ class BrowserUseTool(BaseTool, Generic[Context]):
                         )
 
                     page = await context.get_current_page()
-                    import markdownify
+                    import markdownify # Ensure markdownify is imported
 
+                    # Get page content and limit its size
                     content = markdownify.markdownify(await page.content())
+                    content_limited = content[:max_content_length] # Use the defined limit
 
-                    prompt = f"""\
-Your task is to extract the content of the page. You will be given a page and a goal, and you should extract all relevant information around this goal from the page. If the goal is vague, summarize the page. Respond in json format.
-Extraction goal: {goal}
+                    # --- MODIFICATION START ---
 
-Page content:
-{content[:max_content_length]}
-"""
-                    messages = [{"role": "system", "content": prompt}]
+                    # Create the prompt for the plain text extraction
+                    prompt_for_ask = f"""\
+                    Your task is to extract specific information or summarize the provided page content based on the goal.
+                    Provide ONLY the extracted text or summary directly. Do not include explanations or introductory phrases.
 
-                    # Define extraction function schema
-                    extraction_function = {
-                        "type": "function",
-                        "function": {
-                            "name": "extract_content",
-                            "description": "Extract specific information from a webpage based on a goal",
-                            "parameters": {
-                                "type": "object",
-                                "properties": {
-                                    "extracted_content": {
-                                        "type": "object",
-                                        "description": "The content extracted from the page according to the goal",
-                                        "properties": {
-                                            "text": {
-                                                "type": "string",
-                                                "description": "Text content extracted from the page",
-                                            },
-                                            "metadata": {
-                                                "type": "object",
-                                                "description": "Additional metadata about the extracted content",
-                                                "properties": {
-                                                    "source": {
-                                                        "type": "string",
-                                                        "description": "Source of the extracted content",
-                                                    }
-                                                },
-                                            },
-                                        },
-                                    }
-                                },
-                                "required": ["extracted_content"],
-                            },
-                        },
-                    }
+                    Extraction goal: {goal}
 
-                    # Use LLM to extract content with required function calling
-                    response = await self.llm.ask_tool(
-                        messages,
-                        tools=[extraction_function],
-                        tool_choice="required",
-                    )
+                    Page content to analyze:
+                    {content_limited}
+                    """
 
-                    if response and response.tool_calls:
-                        args = json.loads(response.tool_calls[0].function.arguments)
-                        extracted_content = args.get("extracted_content", {})
-                        return ToolResult(
-                            output=f"Extracted from page:\n{extracted_content}\n"
+                    # Prepare messages for the self.llm.ask call
+                    messages_for_ask = [
+                        # System message (optional, but can help focus the LLM)
+                        {"role": "system", "content": "You are an AI assistant focused on extracting information from web content accurately and concisely."},
+                        # User message containing the prompt
+                        {"role": "user", "content": prompt_for_ask}
+                    ]
+
+                    try:
+                        # Use self.llm.ask for plain text response
+                        logger.info(f"Calling self.llm.ask for content extraction with goal: '{goal}'")
+                        extracted_text = await self.llm.ask(
+                            messages=messages_for_ask,
+                            # You might want to set a specific temperature if needed, otherwise uses default
+                            # temperature=0.1
                         )
+                        logger.debug(f"Raw text response from self.llm.ask: {extracted_text[:500]}...") # Log preview
 
-                    return ToolResult(output="No content was extracted from the page.")
+                        if extracted_text and extracted_text.strip():
+                            logger.info(f"Successfully extracted content via self.llm.ask for goal: '{goal}'")
+                            # Return the extracted text directly in the ToolResult output
+                            return ToolResult(output=f"Extracted content:\n{extracted_text.strip()}")
+                        else:
+                            logger.warning(f"self.llm.ask returned empty content for extraction goal: '{goal}'")
+                            return ToolResult(output="LLM returned no content for extraction.")
+
+                    except Exception as llm_err:
+                        logger.error(f"Error during internal LLM call (self.llm.ask) for extract_content: {llm_err}", exc_info=True)
+                        # Return an error ToolResult
+                        return ToolResult(error=f"Extraction failed due to LLM error: {str(llm_err)}")
+
+                    # --- MODIFICATION END ---
 
                 # Tab management actions
                 elif action == "switch_tab":

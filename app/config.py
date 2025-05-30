@@ -1,8 +1,8 @@
-import json
 import threading
 import tomllib
 from pathlib import Path
-from typing import Dict, List, Optional
+# Make sure Literal is imported from typing
+from typing import Dict, List, Optional, Literal
 
 from pydantic import BaseModel, Field
 
@@ -17,18 +17,21 @@ WORKSPACE_ROOT = PROJECT_ROOT / "workspace"
 
 
 class LLMSettings(BaseModel):
-    model: str = Field(..., description="Model name")
-    base_url: str = Field(..., description="API base URL")
-    api_key: str = Field(..., description="API key")
+    model: str = Field(..., description="Model name or identifier used by the API/endpoint")
+    # base_url is now the VLLM endpoint if api_type is vllm
+    base_url: Optional[str] = Field(None, description="API base URL (e.g., OpenAI) or full endpoint URL (e.g., VLLM)")
+    # api_key is optional, as VLLM might not need one
+    api_key: Optional[str] = Field(None, description="API key (Required for OpenAI/Azure, optional otherwise)")
     max_tokens: int = Field(4096, description="Maximum number of tokens per request")
     max_input_tokens: Optional[int] = Field(
         None,
         description="Maximum input tokens to use across all requests (None for unlimited)",
     )
     temperature: float = Field(1.0, description="Sampling temperature")
-    api_type: str = Field(..., description="Azure, Openai, or Ollama")
-    api_version: str = Field(..., description="Azure Openai version if AzureOpenai")
-
+    # Add 'vllm' to the allowed API types
+    api_type: Literal["azure", "openai", "ollama", "aws", "vllm"] = Field(..., description="Type of the LLM API/Backend")
+    # api_version is specific to Azure, make optional
+    api_version: Optional[str] = Field(None, description="Azure OpenAI API version (only used if api_type is azure)")
 
 class ProxySettings(BaseModel):
     server: str = Field(None, description="Proxy server address")
@@ -91,12 +94,11 @@ class SandboxSettings(BaseModel):
     use_sandbox: bool = Field(False, description="Whether to use the sandbox")
     image: str = Field("python:3.12-slim", description="Base image")
     work_dir: str = Field("/workspace", description="Container working directory")
-    memory_limit: str = Field("512m", description="Memory limit")
-    cpu_limit: float = Field(1.0, description="CPU limit")
-    timeout: int = Field(300, description="Default command timeout (seconds)")
-    network_enabled: bool = Field(
-        False, description="Whether network access is allowed"
-    )
+    memory_limit: str = Field("64g", description="Memory limit")
+    cpu_limit: float = Field(16, description="CPU limit")
+    timeout: int = Field(3000, description="Default command timeout (seconds)")
+    network_enabled: bool = Field(False, description="Whether network access is allowed")
+    # auto_remove: bool = Field(True, description="Whether to automatically remove the sandbox container on exit")
 
 
 class MCPServerConfig(BaseModel):

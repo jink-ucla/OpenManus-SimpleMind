@@ -1,4 +1,5 @@
 import asyncio
+from enum import auto
 import io
 import os
 import tarfile
@@ -63,7 +64,12 @@ class DockerSandbox:
                 cpu_period=100000,
                 cpu_quota=int(100000 * self.config.cpu_limit),
                 network_mode="none" if not self.config.network_enabled else "bridge",
+                # --- ADDED: AutoRemove setting ---
+                # AutoRemove=self.config.auto_remove,
+                auto_remove=True,
+                # --- END ADDED ---
                 binds=self._prepare_volume_bindings(),
+                
             )
 
             # Generate unique container name with sandbox_ prefix
@@ -77,6 +83,12 @@ class DockerSandbox:
                 hostname="sandbox",
                 working_dir=self.config.work_dir,
                 host_config=host_config,
+                #
+                # host_config_01=self.client.api.create_host_config(auto_remove=True),
+               
+                # AutoRemove=self.config.auto_remove,
+                
+                # #
                 name=container_name,
                 tty=True,
                 detach=True,

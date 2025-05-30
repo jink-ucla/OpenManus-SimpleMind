@@ -1,185 +1,189 @@
 <p align="center">
-  <img src="assets/logo.jpg" width="200"/>
-</p>
+  <img src="./figs/LOGO.png" width="200"/>
+  </p>
 
-English | [中文](README_zh.md) | [한국어](README_ko.md) | [日本語](README_ja.md)
-
-[![GitHub stars](https://img.shields.io/github/stars/mannaandpoem/OpenManus?style=social)](https://github.com/mannaandpoem/OpenManus/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]?style=social)](https://github.com/[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]/stargazers)
 &ensp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) &ensp;
-[![Discord Follow](https://dcbadge.vercel.app/api/server/DYn29wFk9z?style=flat)](https://discord.gg/DYn29wFk9z)
-[![Demo](https://img.shields.io/badge/Demo-Hugging%20Face-yellow)](https://huggingface.co/spaces/lyh-917/OpenManusDemo)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15186407.svg)](https://doi.org/10.5281/zenodo.15186407)
+# 👋 Autonomous Computer Vision Development with Agentic AI (using OpenManus)
 
-# 👋 OpenManus
+This project leverages and extends the capabilities of the OpenManus agentic framework to enable **Autonomous Computer Vision Development**. Our work focuses on demonstrating how an LLM-based agent, implemented using OpenManus, can automate the complex planning and tool configuration typically performed by a data scientist in the development of computer vision applications, specifically within the [SimpleMind Cognitive AI environment](https://gitlab.com/sm-ai-team/simplemind).
 
-Manus is incredible, but OpenManus can achieve any idea without an *Invite Code* 🛫!
+**Please Note:** We are an independent research team building upon the excellent foundation of the original OpenManus project. For information on the core OpenManus framework and its general installation, please refer to the [original OpenManus repository](https://github.com/mannaandpoem/OpenManus). This README focuses on our specific application and extensions.
 
-Our team members [@Xinbin Liang](https://github.com/mannaandpoem) and [@Jinyu Xiang](https://github.com/XiangJinyu) (core authors), along with [@Zhaoyang Yu](https://github.com/MoshiQAQ), [@Jiayi Zhang](https://github.com/didiforgithub), and [@Sirui Hong](https://github.com/stellaHSR), we are from [@MetaGPT](https://github.com/geekan/MetaGPT). The prototype is launched within 3 hours and we are keeping building!
+Our team members include: Jin, Wasil, Sangyun, Shawn, John, and Matt. We welcome suggestions, contributions, and feedback on our work!
 
-It's a simple implementation, so we welcome any suggestions, contributions, and feedback!
+## Our Focus: Automating CV with Agentic AI
 
-Enjoy your own agent with OpenManus!
+Agentic Artificial Intelligence (AI) systems, particularly those powered by Large Language Models (LLMs), are showing remarkable potential for complex reasoning, planning, and tool utilization. Our project demonstrates that a specialized computer vision system can be built autonomously from a natural language prompt using these Agentic AI methods.
 
-We're also excited to introduce [OpenManus-RL](https://github.com/OpenManus/OpenManus-RL), an open-source project dedicated to reinforcement learning (RL)- based (such as GRPO) tuning methods for LLM agents, developed collaboratively by researchers from UIUC and OpenManus.
+**Key Objectives and Contributions:**
 
-## Project Demo
+* **Automated CV Workflow Generation:** We extended [SimpleMind (SM)](https://gitlab.com/sm-ai-team/simplemind), an open-source Cognitive AI environment with configurable tools for medical image analysis, by integrating an LLM-based agent.
+* **OpenManus for Agent Implementation:** The intelligent agent responsible for planning and task execution is implemented using the OpenManus framework (this version/fork).
+* **Natural Language to CV Plan:** Our system can interpret a high-level computer vision task described in natural language (e.g., "provide sm (SimpleMind) config for lungs, heart, and ribs segmentation for cxr (chest x-ray)").
+* **Autonomous Planning and Configuration:** The agent decomposes the task, selects appropriate tools from SimpleMind's library, and generates the necessary configuration file (a SimpleMind Knowledge Graph in YAML format) to execute the CV pipeline.
+* **End-to-End Automation:** The agent autonomously triggers the training (SM-Learn) and inference (SM-Think) scripts within the SimpleMind environment using the generated configuration.
 
-<video src="https://private-user-images.githubusercontent.com/61239030/420168772-6dcfd0d2-9142-45d9-b74e-d10aa75073c6.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDEzMTgwNTksIm5iZiI6MTc0MTMxNzc1OSwicGF0aCI6Ii82MTIzOTAzMC80MjAxNjg3NzItNmRjZmQwZDItOTE0Mi00NWQ5LWI3NGUtZDEwYWE3NTA3M2M2Lm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzA3VDAzMjIzOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTdiZjFkNjlmYWNjMmEzOTliM2Y3M2VlYjgyNDRlZDJmOWE3NWZhZjE1MzhiZWY4YmQ3NjdkNTYwYTU5ZDA2MzYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.UuHQCgWYkh0OQq9qsUWqGsUbhG3i9jcZDAMeHjLt5T4" data-canonical-src="https://private-user-images.githubusercontent.com/61239030/420168772-6dcfd0d2-9142-45d9-b74e-d10aa75073c6.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDEzMTgwNTksIm5iZiI6MTc0MTMxNzc1OSwicGF0aCI6Ii82MTIzOTAzMC80MjAxNjg3NzItNmRjZmQwZDItOTE0Mi00NWQ5LWI3NGUtZDEwYWE3NTA3M2M2Lm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzA3VDAzMjIzOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTdiZjFkNjlmYWNjMmEzOTliM2Y3M2VlYjgyNDRlZDJmOWE3NWZhZjE1MzhiZWY4YmQ3NjdkNTYwYTU5ZDA2MzYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.UuHQCgWYkh0OQq9qsUWqGsUbhG3i9jcZDAMeHjLt5T4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px; min-height: 200px"></video>
+### Conceptual Workflow
+
+The overall process involves:
+1.  **User Prompt:** The user provides a natural language description of the CV task.
+2.  **Agentic AI Planning (OpenManus + LLM):**
+    * The LLM agent reasons about the request.
+    * It plans the necessary steps (e.g., image loading, preprocessing, neural network inference, post-processing).
+    * It selects and parameterizes SimpleMind tools.
+    * It generates a SimpleMind Knowledge Graph (YAML).
+3.  **Execution (SimpleMind):**
+    * The agent initiates SimpleMind's SM-Learn module to train models using the generated YAML.
+    * It then initiates SimpleMind's SM-Think module to run inference on new data.
+
+![Conceptual Workflow](./figs/fig1.png)
+
+### Proof-of-Concept: Chest X-Ray Segmentation
+
+We successfully demonstrated this autonomous system with a chest x-ray segmentation task:
+* **Input Prompt:** `"provide sm (SimpleMind) config for lungs, heart, and ribs segmentation for cxr (chest x-ray)"` (followed by execution commands).
+* **Automated Actions:** The agent automatically:
+    1.  Generated a valid SimpleMind YAML configuration.
+    2.  Executed the `train_agents.sh` script in SimpleMind.
+    3.  Executed the `think.sh` script in SimpleMind.
+* **Results:** The autonomously configured, trained, and tested system achieved mean Dice similarity coefficients of:
+    * **Lungs:** 0.96 (on 50 test images)
+    * **Heart:** 0.82 (on 49 test images)
+    * **Ribs:** 0.83 (on 50 test images)
+
+This work highlights the potential for agentic systems to significantly streamline and automate the development of computer vision applications.
+
+## System Architecture
+
+Our system integrates the OpenManus agentic AI framework with the SimpleMind cognitive AI environment. The OpenManus agent, powered by an LLM (e.g., served via vLLM), handles task understanding, planning, and generation of the SimpleMind Knowledge Graph (YAML). SimpleMind then executes the defined computer vision pipeline.
+
+![System Architecture](./figs/fig2.png)
 
 ## Installation
 
-We provide two installation methods. Method 2 (using uv) is recommended for faster installation and better dependency management.
+This project builds upon the OpenManus framework and integrates with SimpleMind and vLLM for efficient LLM serving.
 
-### Method 1: Using conda
+1.  **Base OpenManus Installation:**
+    For the fundamental setup of the OpenManus agent environment, please refer to the installation instructions in the [original OpenManus repository](https://github.com/mannaandpoem/OpenManus#installation).
 
-1. Create a new conda environment:
+2.  **Project-Specific Setup:**
+    This project requires additional components and configurations:
+    * **SimpleMind:** You will need to install SimpleMind. For installation instructions, please refer to [its official repository](https://gitlab.com/sm-ai-team/simplemind).
+    * **vLLM:** For efficient Large Language Model serving, this project utilizes vLLM. Please install it by following the instructions on the [vLLM project documentation](https://docs.vllm.ai/en/latest/getting_started/installation.html) or their [GitHub repository](https://github.com/vllm-project/vllm).
 
-```bash
-conda create -n open_manus python=3.12
-conda activate open_manus
-```
 
-2. Clone the repository:
-
-```bash
-git clone https://github.com/mannaandpoem/OpenManus.git
-cd OpenManus
-```
-
-3. Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-### Method 2: Using uv (Recommended)
-
-1. Install uv (A fast Python package installer and resolver):
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-2. Clone the repository:
-
-```bash
-git clone https://github.com/mannaandpoem/OpenManus.git
-cd OpenManus
-```
-
-3. Create a new virtual environment and activate it:
-
-```bash
-uv venv --python 3.12
-source .venv/bin/activate  # On Unix/macOS
-# Or on Windows:
-# .venv\Scripts\activate
-```
-
-4. Install dependencies:
-
-```bash
-uv pip install -r requirements.txt
-```
-
-### Browser Automation Tool (Optional)
-```bash
-playwright install
-```
+<!-- 3.  **Browser Automation Tool (Optional, inherited from OpenManus):**
+    If your specific workflows require browser automation:
+    ```bash
+    playwright install
+    ``` -->
 
 ## Configuration
 
-OpenManus requires configuration for the LLM APIs it uses. Follow these steps to set up your configuration:
+1.  **LLM Configuration (OpenManus):**
+    Configure your LLM API keys and settings by creating a `config/config.toml` file. You can copy the example:
+    ```bash
+    cp config/config.example.toml config/config.toml
+    ```
+    Edit `config/config.toml` with your details, as described in the [original OpenManus documentation](https://github.com/mannaandpoem/OpenManus#configuration).
 
-1. Create a `config.toml` file in the `config` directory (you can copy from the example):
+2.  **Project-Specific Configuration:**
+    Ensure all paths for SimpleMind, datasets, and output directories are correctly set as per the instructions in [Our Project Setup Guide](./docs/PROJECT_SETUP.md) and any scripts or configuration files specific to this project.
 
-```bash
-cp config/config.example.toml config/config.toml
-```
+## Quick Start / Running Our Demo
 
-2. Edit `config/config.toml` to add your API keys and customize settings:
+To run the autonomous chest X-ray segmentation demo described in our work:
 
-```toml
-# Global LLM configuration
-[llm]
-model = "gpt-4o"
-base_url = "https://api.openai.com/v1"
-api_key = "sk-..."  # Replace with your actual API key
-max_tokens = 4096
-temperature = 0.0
+1.  **Activate your Python environment** where OpenManus and SimpleMind are installed.
+2.  **Launch the OpenManus agent:**
+    ```bash
+    python main.py
+    ```
+3.  **Provide the multi-step prompt** via the terminal when prompted by the agent. Based on our manuscript, an example interaction would be:
 
-# Optional configuration for specific LLM models
-[llm.vision]
-model = "gpt-4o"
-base_url = "https://api.openai.com/v1"
-api_key = "sk-..."  # Replace with your actual API key
-```
+    **User Input (Step 1 - Configuration Generation):**
+    ```
+    Provide sm config for lungs, heart, and ribs segmentation for cxr
+    ```
+    *(The agent will then use its tools, potentially including an internal `sm_json_generator_and_verifier` as described in your manuscript's Table 1, to generate the `example.yaml` for SimpleMind.)*
 
-## Quick Start
+    **User Input (Step 2 - Training):**
+    *(Once the agent confirms YAML generation or you are ready to proceed)*
+    ```
+    Using terminal, Command "export gpu_num='0' && cd /path/to/your/simplemind && simplemind/example/train_agents.sh simplemind/example/example.yaml > simplemind/example/learn_output.txt"
+    ```
+    *(Replace `/path/to/your/simplemind` with the actual path to your SimpleMind directory where `train_agents.sh` and `example.yaml` are accessible.)*
 
-One line for run OpenManus:
+    **User Input (Step 3 - Inference):**
+    *(After training completes)*
+    ```
+    Using terminal, Command "export gpu_num='' && cd /path/to/your/simplemind && sh simplemind/example/think.sh > simplemind/example/think_output.txt"
+    ```
+    *(Ensure paths are correct. The agent will execute these terminal commands.)*
 
-```bash
-python main.py
-```
+The agent will then process these requests, generate the SimpleMind configuration, and execute the training and inference scripts. Outputs and logs will be generated as specified (e.g., `learn_output.txt`, `think_output.txt`, and segmentation results from SimpleMind).
 
-Then input your idea via terminal!
+## How to Contribute
 
-For MCP tool version, you can run:
-```bash
-python run_mcp.py
-```
+We welcome friendly suggestions and helpful contributions to *this specific project*! Please feel free to open issues or submit pull requests to this repository.
 
-For unstable multi-agent version, you also can run:
+For discussions or questions related to our work on autonomous CV with OpenManus and SimpleMind, you can contact:
+* [Primary Contact Name/Email or GitHub Handle] **Note**: If you plan to contribute code, please consider using a pre-commit tool to check your changes if this project adopts it. (e.g., `pre-commit run --all-files`).
 
-```bash
-python run_flow.py
-```
+## Community
 
-## How to contribute
+For discussions related to the core OpenManus framework, please refer to the community channels of the [original OpenManus project](https://github.com/mannaandpoem/OpenManus).
 
-We welcome any friendly suggestions and helpful contributions! Just create issues or submit pull requests.
+<!-- ## Star History
 
-Or contact @mannaandpoem via 📧email: mannaandpoem@gmail.com
-
-**Note**: Before submitting a pull request, please use the pre-commit tool to check your changes. Run `pre-commit run --all-files` to execute the checks.
-
-## Community Group
-Join our networking group on Feishu and share your experience with other developers!
-
-<div align="center" style="display: flex; gap: 20px;">
-    <img src="assets/community_group.jpg" alt="OpenManus 交流群" width="300" />
-</div>
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=mannaandpoem/OpenManus&type=Date)](https://star-history.com/#mannaandpoem/OpenManus&Date)
-
+[![Star History Chart](https://api.star-history.com/svg?repos=[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]&type=Date)](https://star-history.com/#[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]&Date) -->
+<!-- 
 ## Sponsors
-Thanks to [PPIO](https://ppinfra.com/user/register?invited_by=OCPKCN&utm_source=github_openmanus&utm_medium=github_readme&utm_campaign=link) for computing source support.
-> PPIO: The most affordable and easily-integrated MaaS and GPU cloud solution.
+
+Special thanks to any institutions or individuals supporting this work. -->
+
+## Acknowledgements
+
+This work builds upon several pioneering projects and tools. We gratefully acknowledge:
+
+* The **OpenManus Team** ([@mannaandpoem](https://github.com/mannaandpoem) and other contributors) for creating the [OpenManus framework](https://github.com/mannaandpoem/OpenManus), which provided the foundational agentic capabilities for our project.
+* The **SimpleMind Team** for developing the [SimpleMind Cognitive AI environment](https://gitlab.com/sm-ai-team/simplemind).
+<!-- * Inspirations from [anthropic-computer-use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo) and [browser-use](https://github.com/browser-use/browser-use).
+* Related and inspiring works such as [AAAJ](https://github.com/metauto-ai/agent-as-a-judge), [MetaGPT](https://github.com/geekan/MetaGPT), [OpenHands](https://github.com/All-Hands-AI/OpenHands), and [SWE-agent](https://github.com/SWE-agent/SWE-agent). -->
 
 
-## Acknowledgement
 
-Thanks to [anthropic-computer-use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo)
-and [browser-use](https://github.com/browser-use/browser-use) for providing basic support for this project!
+## Our Publication
 
-Additionally, we are grateful to [AAAJ](https://github.com/metauto-ai/agent-as-a-judge), [MetaGPT](https://github.com/geekan/MetaGPT), [OpenHands](https://github.com/All-Hands-AI/OpenHands) and [SWE-agent](https://github.com/SWE-agent/SWE-agent).
+Our work, "Autonomous Computer Vision Development with Agentic AI," is detailed in our upcoming paper.
+[placeholder]
+<!-- 
+* **Title:** Autonomous Computer Vision Development with Agentic AI
+* **Authors:** Jin, Wasil, Sangyun, Shawn, John, Matt
+* **arXiv Link:** [To be added once available]
+* **Full BibTeX:**
+    ```bibtex
+    @article{[YOUR_ARXIV_ID_OR_CUSTOM_KEY_2025],
+      author    = {Jin, [First Name] and Wasil, [First Name] and Sangyun, [First Name] and Shawn, [First Name] and John, [First Name] and Matt, [First Name]},
+      title     = {Autonomous Computer Vision Development with Agentic AI},
+      journal   = {arXiv preprint arXiv:[YOUR_ARXIV_NUMBER_ONCE_AVAILABLE]},
+      year      = {2025}
+      % month, pages, etc.
+    }
+    ```
+    *(Please update the BibTeX with full author names and the correct arXiv details when available.)*
+ -->
 
-We also thank stepfun(阶跃星辰) for supporting our Hugging Face demo space.
+<!-- ## Cite Our Work
 
-OpenManus is built by contributors from MetaGPT. Huge thanks to this agent community!
-
-## Cite
+If you use our specific contributions to autonomous computer vision development, our SimpleMind integration, or the findings from our paper, please cite:
 ```bibtex
-@misc{openmanus2025,
-  author = {Xinbin Liang and Jinyu Xiang and Zhaoyang Yu and Jiayi Zhang and Sirui Hong and Sheng Fan and Xiao Tang},
-  title = {OpenManus: An open-source framework for building general AI agents},
-  year = {2025},
-  publisher = {Zenodo},
-  doi = {10.5281/zenodo.15186407},
-  url = {https://doi.org/10.5281/zenodo.15186407},
-}
-```
+@article{[YOUR_ARXIV_ID_OR_CUSTOM_KEY_2025],
+  author    = {Jin, [First Name] and Wasil, [First Name] and Sangyun, [First Name] and Shawn, [First Name] and John, [First Name] and Matt, [First Name]},
+  title     = {Autonomous Computer Vision Development with Agentic AI},
+  journal   = {arXiv preprint arXiv:[YOUR_ARXIV_NUMBER_ONCE_AVAILABLE]},
+  year      = {2025}
+  % Add other details like month, eprint, primaryClass when available
+} -->
