@@ -142,8 +142,6 @@ This work builds upon several pioneering projects and tools. We gratefully ackno
 
 ## Our Publication
 
-Our work, "Autonomous Computer Vision Development with Agentic AI," is detailed in the below paper:
-
 **Title:** Autonomous Computer Vision Development with Agentic AI
-* **Authors:** Jin, Wasil, Sangyun, Shawn, John, Matt
+* **Authors:** Jin Kim, Muhammad Wahi-Anwa, Sangyun Park, Shawn Shin, John M. Hoffman, Matthew S. Brown
 * **arXiv Link:** https://doi.org/10.48550/arXiv.2506.11140
