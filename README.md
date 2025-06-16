@@ -142,21 +142,8 @@ This work builds upon several pioneering projects and tools. We gratefully ackno
 
 ## Our Publication
 
-Our work, "Autonomous Computer Vision Development with Agentic AI," is detailed in our upcoming paper.
-[placeholder]
-<!-- 
-* **Title:** Autonomous Computer Vision Development with Agentic AI
+Our work, "Autonomous Computer Vision Development with Agentic AI," is detailed in the below paper:
+
+**Title:** Autonomous Computer Vision Development with Agentic AI
 * **Authors:** Jin, Wasil, Sangyun, Shawn, John, Matt
-* **arXiv Link:** [To be added once available]
-* **Full BibTeX:**
-    ```bibtex
-    @article{[YOUR_ARXIV_ID_OR_CUSTOM_KEY_2025],
-      author    = {Jin, [First Name] and Wasil, [First Name] and Sangyun, [First Name] and Shawn, [First Name] and John, [First Name] and Matt, [First Name]},
-      title     = {Autonomous Computer Vision Development with Agentic AI},
-      journal   = {arXiv preprint arXiv:[YOUR_ARXIV_NUMBER_ONCE_AVAILABLE]},
-      year      = {2025}
-      % month, pages, etc.
-    }
-    ```
-    *(Please update the BibTeX with full author names and the correct arXiv details when available.)*
- -->
+* **arXiv Link:** https://doi.org/10.48550/arXiv.2506.11140
